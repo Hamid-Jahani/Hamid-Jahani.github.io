@@ -1,0 +1,220 @@
+/* Minimal single-column academic homepage.
+   No framework, no build step - one stylesheet, served straight from Pages. */
+
+:root {
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #767676;
+    --bg: #fdfdfc;
+    --rule: #e2e0dc;
+    --link: #14507a;
+    --accent-bg: #f4f2ee;
+    --measure: 44rem;
+}
+
+/* Explicit dark palette. Only the tokens change; every rule below is shared. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ink: #e8e6e3;
+        --ink-soft: #b8b5b0;
+        --ink-faint: #8b8884;
+        --bg: #16161a;
+        --rule: #2e2e34;
+        --link: #7fb5da;
+        --accent-bg: #1e1e24;
+    }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    padding: 0 1.25rem 5rem;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--measure); margin: 0 auto; }
+
+/* ---------- links ---------- */
+a { color: var(--link); text-decoration: none; border-bottom: 1px solid transparent; }
+a:hover { border-bottom-color: currentColor; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+
+/* ---------- masthead ---------- */
+header { padding: 3.5rem 0 0; }
+
+h1 {
+    margin: 0 0 .2rem;
+    font-size: 2.1rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+}
+
+.tagline { margin: 0 0 1.5rem; color: var(--ink-soft); font-size: 1.05rem; }
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding: .85rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .875rem;
+    letter-spacing: .01em;
+}
+nav a { color: var(--ink-soft); }
+nav a:hover { color: var(--link); }
+
+/* ---------- intro block: photo + text ---------- */
+.intro { display: flex; gap: 1.75rem; align-items: flex-start; margin: 2.5rem 0 0; }
+.intro-body { flex: 1; min-width: 0; }
+.intro-body > p:first-child { margin-top: 0; }
+
+.portrait {
+    flex: 0 0 150px;
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    object-fit: cover;
+    background: var(--accent-bg);
+    border: 1px solid var(--rule);
+}
+
+/* Placeholder shown until a real photo is dropped in. */
+.portrait-slot {
+    flex: 0 0 150px;
+    width: 150px;
+    height: 150px;
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: .5rem;
+    color: var(--ink-faint);
+    background: var(--accent-bg);
+    font-family: system-ui, sans-serif;
+    font-size: .7rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 34rem) {
+    .intro { flex-direction: column; gap: 1.25rem; }
+    .portrait, .portrait-slot { flex-basis: 120px; width: 120px; height: 120px; }
+}
+
+/* ---------- sections ---------- */
+section { margin-top: 3rem; scroll-margin-top: 1.5rem; }
+
+h2 {
+    margin: 0 0 1.1rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink-faint);
+}
+
+h3 {
+    margin: 1.9rem 0 .6rem;
+    font-size: .95rem;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink-soft);
+}
+h3:first-of-type { margin-top: 0; }
+
+p { margin: 0 0 1rem; }
+
+ul { margin: 0 0 1rem; padding-left: 1.15rem; }
+li { margin-bottom: .45rem; }
+li::marker { color: var(--ink-faint); }
+
+/* ---------- contact row ---------- */
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.1rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .9rem;
+}
+.contact li { margin: 0; }
+
+/* ---------- publications ---------- */
+.pub { margin-bottom: 1.35rem; }
+.pub:last-child { margin-bottom: 0; }
+.pub .title { display: block; }
+.pub .venue { color: var(--ink-soft); font-style: italic; }
+.pub .meta {
+    display: block;
+    margin-top: .15rem;
+    font-family: system-ui, sans-serif;
+    font-size: .82rem;
+    color: var(--ink-faint);
+}
+.me { font-weight: 600; }
+
+.tag {
+    display: inline-block;
+    margin-left: .4rem;
+    padding: .05rem .4rem;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    font-family: system-ui, sans-serif;
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--ink-faint);
+    vertical-align: .1em;
+}
+
+/* ---------- dated entries (roles, education) ---------- */
+.entry { margin-bottom: 1.4rem; }
+.entry:last-child { margin-bottom: 0; }
+.entry .role { font-weight: 600; }
+.entry .where { color: var(--ink-soft); }
+.entry .when {
+    display: block;
+    font-family: system-ui, sans-serif;
+    font-size: .82rem;
+    color: var(--ink-faint);
+    margin-bottom: .3rem;
+}
+.entry p { margin: 0; }
+
+/* ---------- footer ---------- */
+footer {
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-family: system-ui, sans-serif;
+    font-size: .8rem;
+    color: var(--ink-faint);
+}
+
+/* ---------- print ---------- */
+@media print {
+    :root { --bg: #fff; --ink: #000; }
+    body { font-size: 10.5pt; padding: 0; }
+    nav, .portrait-slot { display: none; }
+    a { color: #000; }
+    a::after { content: " (" attr(href) ")"; font-size: 8pt; color: #555; }
+    nav a::after, .contact a::after { content: ""; }
+    section { break-inside: avoid; }
+}
