@@ -35,9 +35,13 @@
 
 <section id="about">
   <div class="intro">
-    <!-- Drop a square headshot at assets/photo.jpg and replace this block with:
-         <img class="portrait" src="assets/photo.jpg" alt="Hamid Jahani"> -->
-    <div class="portrait-slot">add&nbsp;photo at<br>assets/photo.jpg</div>
+    <!-- The portrait is a tall crop, so object-position favours the upper third
+         to keep the face centred rather than the hands. If the file is absent the
+         image removes itself and the placeholder beside it shows instead, so the
+         page never renders a broken-image icon. -->
+    <img class="portrait" src="assets/photo.jpg" alt="Hamid Jahani"
+         onerror="this.remove();document.getElementById('portrait-fallback').hidden=false;">
+    <div class="portrait-slot" id="portrait-fallback" hidden>add&nbsp;photo at<br>assets/photo.jpg</div>
 
     <div class="intro-body">
       <p>

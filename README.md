@@ -14,12 +14,17 @@ assets/        images (add photo.jpg here)
 
 ## Adding a photo
 
-Drop a square headshot at `assets/photo.jpg`, then in `index.html` replace the
-`<div class="portrait-slot">…</div>` placeholder with:
+Save the headshot as `assets/photo.jpg`, commit, and push. No HTML change is
+needed — the page already points at that path.
 
-```html
-<img class="portrait" src="assets/photo.jpg" alt="Hamid Jahani">
-```
+The image does not have to be square. It is cropped by CSS with
+`object-fit: cover` and `object-position: center 22%`, which biases the crop
+window toward the top of a tall portrait so the face stays centred instead of
+the chest. If a different source photo crops badly, adjust that percentage in
+`style.css`.
+
+Until the file exists the image removes itself and a dashed placeholder shows in
+its place, so the page never renders a broken-image icon.
 
 ## Local preview
 

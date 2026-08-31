@@ -80,20 +80,29 @@ nav a:hover { color: var(--link); }
 .intro-body > p:first-child { margin-top: 0; }
 
 .portrait {
-    flex: 0 0 150px;
-    width: 150px;
-    height: 150px;
+    flex: 0 0 160px;
+    width: 160px;
+    height: 160px;
     border-radius: 3px;
-    object-fit: cover;
     background: var(--accent-bg);
     border: 1px solid var(--rule);
+    /* The source is a tall portrait. A default centred crop would land on the
+       chest and cut the head off, so bias the crop window toward the top. */
+    object-fit: cover;
+    object-position: center 22%;
+}
+
+/* The photo is black and white; soften the frame slightly in dark mode so it
+   does not sit on the page as a hard bright rectangle. */
+@media (prefers-color-scheme: dark) {
+    .portrait { filter: brightness(0.92); }
 }
 
 /* Placeholder shown until a real photo is dropped in. */
 .portrait-slot {
-    flex: 0 0 150px;
-    width: 150px;
-    height: 150px;
+    flex: 0 0 160px;
+    width: 160px;
+    height: 160px;
     border: 1px dashed var(--rule);
     border-radius: 3px;
     display: flex;
@@ -110,7 +119,7 @@ nav a:hover { color: var(--link); }
 
 @media (max-width: 34rem) {
     .intro { flex-direction: column; gap: 1.25rem; }
-    .portrait, .portrait-slot { flex-basis: 120px; width: 120px; height: 120px; }
+    .portrait, .portrait-slot { flex-basis: 128px; width: 128px; height: 128px; }
 }
 
 /* ---------- sections ---------- */
