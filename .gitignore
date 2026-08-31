@@ -3,3 +3,6 @@ Thumbs.db
 .idea/
 .vscode/
 node_modules/
+
+# Original full-size portrait source; the repo ships the cropped photo.jpg derivative.
+assets/hf_*.png

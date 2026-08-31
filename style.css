@@ -86,10 +86,11 @@ nav a:hover { color: var(--link); }
     border-radius: 3px;
     background: var(--accent-bg);
     border: 1px solid var(--rule);
-    /* The source is a tall portrait. A default centred crop would land on the
-       chest and cut the head off, so bias the crop window toward the top. */
+    /* photo.jpg ships pre-cropped to a square framed on the eye line, so cover
+       has nothing to crop and a plain centre is correct. Kept explicit so a
+       future non-square replacement still degrades sensibly. */
     object-fit: cover;
-    object-position: center 22%;
+    object-position: center;
 }
 
 /* The photo is black and white; soften the frame slightly in dark mode so it
