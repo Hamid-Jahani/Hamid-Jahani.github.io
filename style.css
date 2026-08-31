@@ -99,28 +99,9 @@ nav a:hover { color: var(--link); }
     .portrait { filter: brightness(0.92); }
 }
 
-/* Placeholder shown until a real photo is dropped in. */
-.portrait-slot {
-    flex: 0 0 160px;
-    width: 160px;
-    height: 160px;
-    border: 1px dashed var(--rule);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: .5rem;
-    color: var(--ink-faint);
-    background: var(--accent-bg);
-    font-family: system-ui, sans-serif;
-    font-size: .7rem;
-    line-height: 1.4;
-}
-
 @media (max-width: 34rem) {
     .intro { flex-direction: column; gap: 1.25rem; }
-    .portrait, .portrait-slot { flex-basis: 128px; width: 128px; height: 128px; }
+    .portrait { flex-basis: 128px; width: 128px; height: 128px; }
 }
 
 /* ---------- sections ---------- */
@@ -222,7 +203,7 @@ footer {
 @media print {
     :root { --bg: #fff; --ink: #000; }
     body { font-size: 10.5pt; padding: 0; }
-    nav, .portrait-slot { display: none; }
+    nav { display: none; }
     a { color: #000; }
     a::after { content: " (" attr(href) ")"; font-size: 8pt; color: #555; }
     nav a::after, .contact a::after { content: ""; }

@@ -9,22 +9,14 @@ rather than running them through Jekyll.
 ```
 index.html     the page
 style.css      all styling; light and dark palettes share one rule set
-assets/        images (add photo.jpg here)
+assets/photo.jpg  portrait, 480x480
 ```
 
 ## Adding a photo
 
-Save the headshot as `assets/photo.jpg`, commit, and push. No HTML change is
-needed — the page already points at that path.
-
-The image does not have to be square. It is cropped by CSS with
-`object-fit: cover` and `object-position: center 22%`, which biases the crop
-window toward the top of a tall portrait so the face stays centred instead of
-the chest. If a different source photo crops badly, adjust that percentage in
-`style.css`.
-
-Until the file exists the image removes itself and a dashed placeholder shows in
-its place, so the page never renders a broken-image icon.
+`assets/photo.jpg` ships pre-cropped to a square (480x480, ~40 KB) framed on
+the eye line. To replace it, drop a new source in `assets/` and re-run the crop
+so the shipped file stays square and small.
 
 ## Local preview
 
