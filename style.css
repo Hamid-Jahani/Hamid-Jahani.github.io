@@ -27,7 +27,17 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+    -webkit-text-size-adjust: 100%;
+    /* Animate in-page jumps so the reader keeps their bearings instead of
+       being teleported. Disabled below for anyone who asks for reduced motion. */
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
 
 body {
     margin: 0;
@@ -108,6 +118,11 @@ nav a:hover { color: var(--link); }
 section { margin-top: 3rem; scroll-margin-top: 1.5rem; }
 
 h2 {
+    /* flex so the back-to-top link can sit at the right end of the rule */
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
     margin: 0 0 1.1rem;
     padding-bottom: .35rem;
     border-bottom: 1px solid var(--rule);
@@ -118,6 +133,26 @@ h2 {
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     color: var(--ink-faint);
 }
+
+/* Back-to-top link on every section heading. Always visible rather than
+   hover-only: a control you cannot see is a control you will not use, and it
+   has to work on touch devices where there is no hover at all. */
+.totop {
+    flex: 0 0 auto;
+    /* Undo the heading's uppercase tracking so the arrow is not pushed off-centre. */
+    letter-spacing: normal;
+    font-size: .95rem;
+    line-height: 1;
+    color: var(--ink-faint);
+    border-bottom: none;
+    /* Enlarge the tap target well past the glyph without moving the layout. */
+    padding: .35rem .5rem;
+    margin: -.35rem -.5rem -.35rem 0;
+    border-radius: 3px;
+    transition: color .15s ease, background-color .15s ease;
+}
+.totop:hover { color: var(--link); background: var(--accent-bg); border-bottom: none; }
+.totop:focus-visible { color: var(--link); }
 
 h3 {
     margin: 1.9rem 0 .6rem;
@@ -203,7 +238,7 @@ footer {
 @media print {
     :root { --bg: #fff; --ink: #000; }
     body { font-size: 10.5pt; padding: 0; }
-    nav { display: none; }
+    nav, .totop { display: none; }
     a { color: #000; }
     a::after { content: " (" attr(href) ")"; font-size: 8pt; color: #555; }
     nav a::after, .contact a::after { content: ""; }
